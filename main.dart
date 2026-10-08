@@ -14,174 +14,123 @@ class InvestimentoApp extends StatelessWidget {
       title: 'Meu Investimento',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
+        useMaterial3: true,
       ),
-      home: const InvestimentoPage(),
+      home: const InvestimentoHome(),
     );
   }
 }
 
-class InvestimentoPage extends StatefulWidget {
-  const InvestimentoPage({super.key});
+class InvestimentoHome extends StatefulWidget {
+  const InvestimentoHome({super.key});
 
   @override
-  State<InvestimentoPage> createState() => _InvestimentoPageState();
+  State<InvestimentoHome> createState() => _InvestimentoHomeState();
 }
 
-class _InvestimentoPageState extends State<InvestimentoPage> {
-  double valorInvestido = 60000.0;
-
-  // Taxa de exemplo
-  double taxa = 10.0;
-
-  double get lucro => valorInvestido * taxa / 100;
-
-  double get total => valorInvestido + lucro;
+class _InvestimentoHomeState extends State<InvestimentoHome> {
+  double investimento = 60000.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Meu Investimento'),
-        centerTitle: true,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
-
             const Text(
-              'Valor investido',
-              textAlign: TextAlign.center,
+              'Saldo para investir',
               style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.grey,
               ),
             ),
 
             const SizedBox(height: 10),
 
             Text(
-              '${valorInvestido.toStringAsFixed(2)} MZN',
-              textAlign: TextAlign.center,
+              '${investimento.toStringAsFixed(2)} MZN',
               style: const TextStyle(
-                fontSize: 36,
+                fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.green,
+                color: Colors.blue,
               ),
             ),
 
             const SizedBox(height: 30),
 
-            Card(
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Resumo do investimento',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade50,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Investimento inicial',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    '60.000 MZN',
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Investimento de 60.000 MZN selecionado!',
                       ),
                     ),
-
-                    const SizedBox(height: 20),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Capital:'),
-                        Text(
-                          '${valorInvestido.toStringAsFixed(2)} MZN',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 15),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Taxa:'),
-                        Text(
-                          '${taxa.toStringAsFixed(0)}%',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 15),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Lucro:'),
-                        Text(
-                          '${lucro.toStringAsFixed(2)} MZN',
-                          style: const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    const Divider(height: 30),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Total:',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '${total.toStringAsFixed(2)} MZN',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  );
+                },
+                child: const Text(
+                  'INVESTIR 60.000 MZN',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  valorInvestido = 60000.0;
-                });
-
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      '60.000 MZN foram definidos como investimento.',
-                    ),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+            const Text(
+              'Este é um exemplo de aplicativo de investimento.',
+              style: TextStyle(
+                color: Colors.grey,
               ),
-              child: const Text(
-                'INVESTIR 60.000 MZN',
-                style: TextStyle(
-                 
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
