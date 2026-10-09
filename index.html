@@ -3,141 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meu Investimento</title>
-
+<title>MZM CAPA PRO</title>
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#020602;
+  color:white;
+  font-family:Arial,sans-serif;
 }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: : linear-gradient(135deg, #0b1020, #24104f, #101b45);;
-  color: white;
+header{
+  text-align:center;
+  padding:25px 10px;
+  background:linear-gradient(135deg,#001900,#003d00);
+  border-bottom:2px solid #39ff14;
 }
-
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 25px 18px;
+h1{
+  color:#39ff14;
+  font-size:35px;
+  margin:5px;
+  text-shadow:0 0 12px #39ff14;
 }
-
-.header {
-  background: linear-gradient(135deg, #3155ff, #7b35d8);
-  padding: 28px 22px;
-  border-radius: 22px;
-  margin-bottom: 22px;
+header p{color:#ddd}
+main{padding:15px;max-width:600px;margin:auto}
+.card{
+  background:#081108;
+  border:1px solid #20e629;
+  border-radius:15px;
+  padding:18px;
+  margin:15px 0;
 }
-
-.header h1 {
-  margin: 0 0 10px;
-  font-size: 30px;
+h2{color:#39ff14;font-size:21px}
+button{
+  background:#39ff14;
+  color:#001000;
+  border:0;
+  padding:13px;
+  border-radius:9px;
+  font-weight:bold;
+  font-size:16px;
+  width:100%;
+  margin-top:10px;
 }
-
-.header p {
-  margin: 0;
-  color: #e5e7ff;
+input{width:100%;accent-color:#39ff14}
+#area{
+  height:300px;
+  background:#000;
+  border:1px solid #39ff14;
+  border-radius:12px;
+  position:relative;
+  overflow:hidden;
 }
-
-.card {
-  background: #151c32;
-  border: 1px solid #293454;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 16px;
+#alvo{
+  position:absolute;
+  width:48px;
+  height:48px;
+  border:4px solid #39ff14;
+  border-radius:50%;
+  display:none;
+  box-shadow:0 0 12px #39ff14;
 }
-
-.card h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-.valor {
-  font-size: 30px;
-  font-weight: bold;
-  margin: 12px 0;
-}
-
-.info {
-  color: #aeb8d4;
-  font-size: 14px;
-}
-
-.buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-button {
-  flex: 1;
-  border: none;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background: #3155ff;
-}
-
-button.secundario {
-  background: #242e4b;
-}
-
-.footer {
-  text-align: center;
-  color: #7f8baa;
-  font-size: 13px;
-  margin-top: 25px;
-}
+#mensagem{color:#39ff14;font-weight:bold}
+footer{text-align:center;color:#aaa;padding:20px}
 </style>
 </head>
-
 <body>
+<header>
+  <h1>MZM</h1>
+  <h1>CAPA PRO</h1>
+  <p>🎯 TREINA A TUA MIRA 🎯</p>
+</header>
 
-<div class="container">
-
-  <div class="header">
-    <h1>Meu Investimento</h1>
-    <p>Seu espaço para acompanhar seus investimentos.</p>
+<main>
+  <div class="card">
+    <h2>🔥 BEM-VINDO!</h2>
+    <p>Treina a tua precisão e melhora a tua mira para o Free Fire.</p>
+    <p>Estado: <span style="color:#39ff14">APP ATIVO</span></p>
   </div>
 
   <div class="card">
-    <h2>Resumo dos investimentos</h2>
-    <div class="valor">MZN 0,00</div>
-    <div class="info">Saldo demonstrativo</div>
-
-    <div class="buttons">
-      <button>Adicionar</button>
-      <button class="secundario">Detalhes</button>
+    <h2>🎯 TREINO DE MIRA</h2>
+    <p>Toca no alvo verde o mais depressa que conseguires!</p>
+    <div id="area">
+      <button id="alvo" aria-label="Alvo de treino"></button>
     </div>
+    <button onclick="iniciar()">INICIAR TREINO</button>
+    <p>Pontos: <span id="pontos">0</span></p>
+    <p>Tempo: <span id="tempo">30</span> segundos</p>
+    <p id="mensagem">Pronto para treinar?</p>
   </div>
 
   <div class="card">
-    <h2>Meu progresso</h2>
-    <p class="info">Acompanhe seus valores e organize seus investimentos em um só lugar.</p>
+    <h2>⚙️ SENSIBILIDADE</h2>
+    <p>Experimenta estes valores como ponto de partida.</p>
+    <label>Geral: <span id="v1">170</span></label>
+    <input type="range" min="0" max="200" value="170"
+    oninput="v1.textContent=this.value">
+    <label>Ponto vermelho: <span id="v2">150</span></label>
+    <input type="range" min="0" max="200" value="150"
+    oninput="v2.textContent=this.value">
+    <label>Mira 2x: <span id="v3">130</span></label>
+    <input type="range" min="0" max="200" value="130"
+    oninput="v3.textContent=this.value">
+    <p style="color:#aaa">Estes são valores experimentais. Ajusta-os no jogo conforme o teu aparelho.</p>
   </div>
 
-  <div class="footer">
-    Meu Investimento • Painel pessoal
+  <div class="card">
+    <h2>💡 DICAS PARA DAR CAPA</h2>
+    <p>✅ Treina a puxada curta para cima.</p>
+    <p>✅ Experimenta diferentes sensibilidades.</p>
+    <p>✅ Mantém o botão de disparo confortável.</p>
+    <p>✅ Treina alguns minutos todos os dias.</p>
   </div>
 
-</div>
+  <div class="card">
+    <h2>🛡️ JOGA COM SEGURANÇA</h2>
+    <p>Este aplicativo é uma ferramenta de treino. Não altera o Free Fire nem automatiza disparos.</p>
+  </div>
+</main>
 
+<footer>MZM CAPA PRO © 2026</footer>
+
+<script>
+let pontos=0,segundos=30,intervalo=null;
+const alvo=document.getElementById('alvo');
+const area=document.getElementById('area');
+
+function mover(){
+  const maxX=area.clientWidth-alvo.offsetWidth;
+  const maxY=area.clientHeight-alvo.offsetHeight;
+  alvo.style.left=Math.max(0,Math.random()*maxX)+'px';
+  alvo.style.top=Math.max(0,Math.random()*maxY)+'px';
+}
+function iniciar(){
+  clearInterval(intervalo);
+  pontos=0;
+  segundos=30;
+  document.getElementById('pontos').textContent=pontos;
+  document.getElementById('tempo').textContent=segundos;
+  document.getElementById('mensagem').textContent='Treino iniciado!';
+  alvo.style.display='block';
+  mover();
+  intervalo=setInterval(()=>{
+    segundos--;
+    document.getElementById('tempo').textContent=segundos;
+    if(segundos<=0){
+      clearInterval(intervalo);
+      alvo.style.display='none';
+      document.getElementById('mensagem').textContent=
+      'Treino terminado! Pontuação: '+pontos;
+    }
+  },1000);
+}
+alvo.addEventListener('click',()=>{
+  if(segundos>0 && alvo.style.display==='block'){
+    pontos++;
+    document.getElementById('pontos').textContent=pontos;
+    mover();
+  }
+});
+</script>
 </body>
 </html>
-
-
-  
-  
-  
-
-
-  
-
-
-  
-
-  
-  
